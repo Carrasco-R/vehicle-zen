@@ -1,11 +1,20 @@
 <script>
   import { Car, ChevronsUpDown } from "lucide-svelte";
   import { page } from "$app/state";
+
+  const pages = [
+    "Information Dashboard",
+    "Maintenance Log",
+    "Engine",
+    "Tires",
+    "Insurance",
+    "Documents",
+  ];
 </script>
 
 <label for="app-sidebar" aria-label="close sidebar" class="drawer-overlay">
 </label>
-<div class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+<div class="menu bg-base-300 text-base-content min-h-full w-80 p-4">
   <!-- Sidebar content here -->
   <div class="dropdown dropdown-bottom dropdown-end">
     <div
@@ -26,22 +35,9 @@
       <li><a>2008 Toyota Camry</a></li>
     </ul>
   </div>
-  <ul class="menu bg-base-200 rounded-box w-full">
-    <li><a href={page.url}>Dashboard</a></li>
-    <li>
-      <a>Maintenance</a>
-      <ul>
-        <li><a>Submenu 1</a></li>
-        <li><a>Submenu 2</a></li>
-      </ul>
-    </li>
-    <li>
-      <a>Documents</a>
-      <ul>
-        <li><a>Submenu 1</a></li>
-        <li><a>Submenu 2</a></li>
-      </ul>
-    </li>
-    <li><a>Settings</a></li>
+  <ul class="menu rounded-box w-full">
+    {#each pages as route}
+      <li><a>{route}</a></li>
+    {/each}
   </ul>
 </div>
