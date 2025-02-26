@@ -4,6 +4,6 @@ services:
     volumes:
       - ${PWD}/app:/app
     working_dir: /app
-    command: "npm run dev -- --host"
+    command: "npm install && npm run dev -- --host"
     ports:
       - "8080:5173"
