@@ -1,5 +1,5 @@
 <script>
-  import { Car, ChevronsUpDown } from "lucide-svelte";
+  import { Car, ChevronsUpDown, CirclePlus, Plus } from "lucide-svelte";
   import { page } from "$app/state";
 
   const pages = [
@@ -10,6 +10,7 @@
     "Insurance",
     "Documents",
   ];
+  const globalPages = ["Settings"];
 </script>
 
 <label for="app-sidebar" aria-label="close sidebar" class="drawer-overlay">
@@ -33,11 +34,27 @@
       <li><a>2013 Toyota Corolla</a></li>
       <li><a>2017 Hyundai Tucson</a></li>
       <li><a>2008 Toyota Camry</a></li>
+      <li>
+        <button
+          class="btn btn-soft btn-neutral"
+          onclick={my_modal_5.showModal()}
+        >
+          <Plus size="18" />
+          <div>Add Vehicle</div>
+        </button>
+      </li>
     </ul>
   </div>
-  <ul class="menu rounded-box w-full">
-    {#each pages as route}
-      <li><a>{route}</a></li>
-    {/each}
-  </ul>
+  <div class="grow flex flex-col justify-between">
+    <ul class="menu rounded-box w-full">
+      {#each pages as route}
+        <li><a>{route}</a></li>
+      {/each}
+    </ul>
+    <ul class="menu rounded-box w-full">
+      {#each globalPages as route}
+        <li><a href={route.toLowerCase()}>{route}</a></li>
+      {/each}
+    </ul>
+  </div>
 </div>

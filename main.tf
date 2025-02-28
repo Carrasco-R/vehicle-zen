@@ -43,6 +43,15 @@ resource "aws_security_group" "security" {
     protocol  = "tcp"
   }
 
+  ingress {
+    cidr_blocks = [
+      "0.0.0.0/0"
+    ]
+    from_port = 8080
+    to_port   = 8080
+    protocol  = "tcp"
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -53,11 +62,14 @@ resource "aws_security_group" "security" {
 
 resource "aws_instance" "vz_demo_server" {
     ami = "ami-04b4f1a9cf54c11d0"
-    instance_type = "t2.micro"
+    instance_type = "t3.small"
     key_name = aws_key_pair.tf_key.key_name
     security_groups = [ "${aws_security_group.security.name}" ]
 
     tags = {
         Name = "vz-demo"
+    }
+    credit_specification {
+        cpu_credits = "unlimited"
     }
 }
